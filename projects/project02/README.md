@@ -211,17 +211,29 @@ Implement `feline_fixes`, which is a diff function that takes two strings. It re
 
 Here are some examples:
 
-    >>> big_limit = 10>>> feline_fixes("nice", "rice", big_limit)    # Substitute: n -> r1>>> feline_fixes("range", "rungs", big_limit)  # Substitute: a -> u, e -> s2>>> feline_fixes("pill", "pillage", big_limit) # Don't substitute anything, length difference of 3.3>>> feline_fixes("goodbye", "good", big_limit) # Don't substitute anything, length difference of 3.3>>> feline_fixes("roses", "arose", big_limit)  # Substitute: r -> a, o -> r, s -> o, e -> s, s -> e5>>> feline_fixes("rose", "hello", big_limit)   # Substitute: r->h, o->e, s->l, e->l, length difference of 1.5
+    >>> big_limit = 10
+    >>> feline_fixes("nice", "rice", big_limit)    # Substitute: n -> r
+    1
+    >>> feline_fixes("range", "rungs", big_limit)  # Substitute: a -> u, e -> s
+    2
+    >>> feline_fixes("pill", "pillage", big_limit) # Don't substitute anything, length difference of 3.
+    3
+    >>> feline_fixes("goodbye", "good", big_limit) # Don't substitute anything, length difference of 3.
+    3
+    >>> feline_fixes("roses", "arose", big_limit)  # Substitute: r -> a, o -> r, s -> o, e -> s, s -> e
+    5
+    >>> feline_fixes("rose", "hello", big_limit)   # Substitute: r->h, o->e, s->l, e->l, length difference of 1.
+    5
 
 > **Important**: You may not use `while`, `for`, or list comprehensions in your implementation. Use recursion.
 
 If the number of characters that must change is greater than `limit`, then `feline_fixes` should return any number larger than `limit` and should minimize the amount of computation needed to do so.
 
 > Why is there a limit? We know that `autocorrect` will reject any `source` word whose difference with the `typed` word is greater than `limit`. It doesn't matter if the difference is greater than `limit` by 1 or by 100; autocorrect will reject it just the same. Therefore, as soon as we know the difference will be above `limit`, it makes sense to try to minimize extra computation, even if the returned difference won't be exactly correct.
-> 
+>
 > These two calls to `feline_fixes` should take about the same amount of time to evaluate:
-> 
->     >>> limit = 4>>> feline_fixes("roses", "arose", limit) > limitTrue>>> feline_fixes("rosesabcdefghijklm", "arosenopqrstuvwxyz", limit) > limitTrue
+>
+>  >>> limit = 4>>> feline_fixes("roses", "arose", limit) > limitTrue>>> feline_fixes("rosesabcdefghijklm", "arosenopqrstuvwxyz", limit) > limitTrue
 
 To ensure that you are correctly minimizing the amount of extra computation that is performed after the `limit` is reached, there is an autograder test that measures the performance of your solution based on the number of function calls that it makes. The test isn't perfect; using a helper function may cause this test to fail even if you are successfully avoiding extra computation.
 
@@ -253,7 +265,13 @@ There are three kinds of edit operations, with some examples:
 
 Each edit operation contributes 1 to the difference between two words.
 
-    >>> big_limit = 10>>> minimum_mewtations("cats", "scat", big_limit)       # cats -> scats -> scat2>>> minimum_mewtations("purng", "purring", big_limit)   # purng -> purrng -> purring2>>> minimum_mewtations("ckiteus", "kittens", big_limit) # ckiteus -> kiteus -> kitteus -> kittens3
+    >>> big_limit = 10
+    >>> minimum_mewtations("cats", "scat", big_limit)       # cats -> scats -> scat
+    2
+    >>> minimum_mewtations("purng", "purring", big_limit)   # purng -> purrng -> purring
+    2
+    >>> minimum_mewtations("ckiteus", "kittens", big_limit) # ckiteus -> kiteus -> kitteus -> kittens
+    3
 
 We have provided a template of an implementation in `cats.py`. You may modify the template however you want or delete it entirely.
 
@@ -385,7 +403,10 @@ Specifically, the `fastest_words` function returns a list of lists of words, one
 
 For example consider the following match with the words `'Just'`, `'have'`, and `'fun'`. Player 0 typed `'fun'` the fastest (3 seconds), Player 1 typed `'Just'` the fastest (4 seconds), and they tied on the word `'have'` (both took 1 second) so we consider to Player 0 to be the fastest, because they are the earliest player in the list.
 
-    >>> player_0 = [5, 1, 3]>>> player_1 = [4, 1, 6]>>> fastest_words(match(['Just', 'have', 'fun'], [player_0, player_1]))[['have', 'fun'], ['Just']]
+    >>> player_0 = [5, 1, 3]
+    >>> player_1 = [4, 1, 6]
+    >>> fastest_words(match(['Just', 'have', 'fun'], [player_0, player_1]))
+    [['have', 'fun'], ['Just']]
 
 The `match` argument is a `match` data abstraction, just like the one we returned in Problem 9.
 

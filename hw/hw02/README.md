@@ -35,7 +35,7 @@ triple = lambda x: 3 * x
 increment = lambda x: x + 1
 
 Higher-Order Functions
-Q1: Product
+**Q1: Product**
 Write a function called product that returns the product of the first n terms of a sequence. Specifically, product takes in an integer n and term, a single-argument function that determines a sequence. (That is, term(i) gives the ith term of the sequence.) product(n, term) should return term(1) * ... * term(n).
 
 def product(n, term):
@@ -43,7 +43,7 @@ def product(n, term):
 
     n: a positive integer
     term:  a function that takes one argument to produce the term
-
+    
     >>> product(3, identity)  # 1 * 2 * 3
     6
     >>> product(5, identity)  # 1 * 2 * 3 * 4 * 5

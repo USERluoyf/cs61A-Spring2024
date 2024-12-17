@@ -49,7 +49,7 @@ Write a function `deep_map` that takes a list `s` and a one-argument function `f
 
 Use Ok to test your code:
 
-    python3 ok -q deep_map
+    python ok -q deep_map
 
 Data Abstraction[​](https://www.learncs.site/docs/curriculum-resource/cs61a/homework/hw04#data-abstraction "Direct link to Data Abstraction")
 ---------------------------------------------------------------------------------------------------------------------------------------------
@@ -94,7 +94,7 @@ Run the `ok` tests for `total_mass` to make sure that your `planet` and `mass` f
 
 Use Ok to test your code:
 
-    python3 ok -q total_mass
+    python ok -q total_mass
 
 ### Q3: Balanced[​](https://www.learncs.site/docs/curriculum-resource/cs61a/homework/hw04#q3-balanced "Direct link to Q3: Balanced")
 
@@ -111,7 +111,7 @@ Planets themselves are balanced, as there is nothing hanging off of them.
 
 Use Ok to test your code:
 
-    python3 ok -q balanced
+    python ok -q balanced
 
 Trees[​](https://www.learncs.site/docs/curriculum-resource/cs61a/homework/hw04#trees "Direct link to Trees")
 ------------------------------------------------------------------------------------------------------------
@@ -124,14 +124,14 @@ Write a function that takes in a tree and returns the maximum sum of the values 
 
 Use Ok to test your code:
 
-    python3 ok -q max_path_sum
+    python ok -q max_path_sum
 
 Check Your Score Locally[​](https://www.learncs.site/docs/curriculum-resource/cs61a/homework/hw04#check-your-score-locally "Direct link to Check Your Score Locally")
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 You can locally check your score on each question of this assignment by running
 
-    python3 ok --score
+    python ok --score
 
 **This does NOT submit the assignment!** When you are satisfied with your score, submit the assignment to Gradescope to receive credit for it.
 

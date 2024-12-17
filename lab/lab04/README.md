@@ -18,15 +18,39 @@ Consult the drop-down if you need a refresher on dictionaries. It's okay to skip
 
 A dictionary contains key-value pairs and allows the values to be looked up by their key using square brackets. Each key must be unique.
 
-    >>> d = {2: 4, 'two': ['four'], (1, 1): 4}>>> d[2]4>>> d['two']['four']>>> d[(1, 1)]4
+    >>> d = {2: 4, 'two': ['four'], (1, 1): 4}
+    >>> d[2]
+    4
+    >>> d['two']
+    ['four']
+    >>> d[(1, 1)]
+    4
 
 The sequence of keys or values or key-value pairs can be accessed using `.keys()` or `.values()` or `.items()`.
 
-    >>> for k in d.keys():...     print(k)...2two(1, 1)>>> for v in d.values():...     print(v)...4['four']4>>> for k, v in d.items():...     print(k, v)...2 4two ['four'](1, 1) 4
+    >>> for k in d.keys():
+    ...     print(k)
+    ...
+    2
+    two (1, 1)
+    >>> for v in d.values():
+    ...     print(v)
+    ...
+    4
+    ['four'] 4
+    >>> for k, v in d.items():
+    ...     print(k, v)
+    ...
+    2 4
+    two ['four']
+    (1, 1) 4
 
 You can check whether a dictionary contains a key using `in`:
 
-    >>> 'two' in dTrue>>> 4 in dFalse
+    >>> 'two' in d
+    True
+    >>> 4 in d
+    False
 
 A dictionary comprehension is an expression that evaluates to a new dictionary.
 
@@ -36,9 +60,17 @@ A dictionary comprehension is an expression that evaluates to a new dictionary.
 
 > Use Ok to test your knowledge with the following "What Would Python Display?" questions:
 > 
->     python3 ok -q pokemon -u
+>     python ok -q pokemon -u
 
-    >>> pokemon = {'pikachu': 25, 'dragonair': 148, 'mew': 151}>>> pokemon['pikachu']______25>>> len(pokemon)______3>>> 'mewtwo' in pokemon______False>>> 'pikachu' in pokemon______True>>> 25 in pokemon______False>>> 148 in pokemon.values()______True>>> 151 in pokemon.keys()______False>>> 'mew' in pokemon.keys()______True
+    >>> pokemon = {'pikachu': 25, 'dragonair': 148, 'mew': 151}
+    >>> pokemon['pikachu']______25
+    >>> len(pokemon)______3
+    >>> 'mewtwo' in pokemon______False
+    >>> 'pikachu' in pokemon______True
+    >>> 25 in pokemon______False
+    >>> 148 in pokemon.values()______True
+    >>> 151 in pokemon.keys()______False
+    >>> 'mew' in pokemon.keys()______True
 
 ### Q2: Divide[​](https://www.learncs.site/docs/curriculum-resource/cs61a/lab/lab01#q2-divide "Direct link to Q2: Divide")
 
@@ -50,7 +82,7 @@ Implement `divide`, which takes two lists of positive integers `quotients` and `
 
 Use Ok to test your code:
 
-    python3 ok -q divide
+    python ok -q divide
 
 ### Q3: Buying Fruit[​](https://www.learncs.site/docs/curriculum-resource/cs61a/lab/lab01#q3-buying-fruit "Direct link to Q3: Buying Fruit")
 
@@ -60,11 +92,35 @@ Implement `buy`, which takes a list of `required_fruits` (strings), a dictionary
 > 
 > What does `fruits` and `amount` represent? How are they used in the recursive?
 
-    def buy(required_fruits, prices, total_amount):    """Print ways to buy some of each fruit so that the sum of prices is amount.    >>> prices = {'oranges': 4, 'apples': 3, 'bananas': 2, 'kiwis': 9}    >>> buy(['apples', 'oranges', 'bananas'], prices, 12)    [2 apples][1 orange][1 banana]    >>> buy(['apples', 'oranges', 'bananas'], prices, 16)    [2 apples][1 orange][3 bananas]    [2 apples][2 oranges][1 banana]    >>> buy(['apples', 'kiwis'], prices, 36)    [3 apples][3 kiwis]    [6 apples][2 kiwis]    [9 apples][1 kiwi]    """    def add(fruits, amount, cart):        if fruits == [] and amount == 0:            print(cart)        elif fruits and amount > 0:            fruit = fruits[0]            price = ____            for k in ____:                add(____, ____, ____)    add(required_fruits, total_amount, '')def display(fruit, count):    """Display a count of a fruit in square brackets.    >>> display('apples', 3)    '[3 apples]'    >>> display('apples', 1)    '[1 apple]'    """    assert count >= 1 and fruit[-1] == 's'    if count == 1:        fruit = fruit[:-1]  # get rid of the plural s    return '[' + str(count) + ' ' + fruit + ']'
+    def buy(required_fruits, prices, total_amount):    
+        """Print ways to buy some of each fruit so that the sum of prices is amount.    
+        >>> prices = {'oranges': 4, 'apples': 3, 'bananas': 2, 'kiwis': 9}    
+        >>> buy(['apples', 'oranges', 'bananas'], prices, 12)    [2 apples][1 orange][1  banana]
+        >>> buy(['apples', 'oranges', 'bananas'], prices, 16)    [2 apples][1 orange][3 bananas]    [2 apples][2 oranges][1 banana]    
+        >>> buy(['apples', 'kiwis'], prices, 36)    [3 apples][3 kiwis]    [6 apples][2 kiwis]    [9 apples][1 kiwi]    """    
+        def add(fruits, amount, cart):        
+            if fruits == [] and amount == 0:
+                print(cart)
+            elif fruits and amount > 0:
+                fruit = fruits[0]
+                price = ____
+                for k in ____:
+                    add(____, ____, ____)
+        add(required_fruits, total_amount, '')
+    def display(fruit, count):
+        """Display a count of a fruit in square brackets.
+        >>> display('apples', 3)
+        '[3 apples]'
+        >>> display('apples', 1)
+        '[1 apple]'    """
+        assert count >= 1 and fruit[-1] == 's'
+        if count == 1:
+            fruit = fruit[:-1]  # get rid of the plural s
+        return '[' + str(count) + ' ' + fruit + ']'
 
 Use Ok to test your code:
 
-    python3 ok -q buy
+    python ok -q buy
 
 Data Abstraction[​](https://www.learncs.site/docs/curriculum-resource/cs61a/lab/lab01#data-abstraction "Direct link to Data Abstraction")
 -----------------------------------------------------------------------------------------------------------------------------------------
@@ -73,11 +129,18 @@ Consult the drop-down if you need a refresher on data abstraction. It's okay to 
 
 A _data abstraction_ is a set of functions that compose and decompose compound values. One function called the _constructor_ puts together two or more parts into a whole (such as a rational number; also known as a fraction), and other functions called _selectors_ return parts of that whole (such as the numerator or denominator).
 
-    def rational(n, d):    "Return a fraction n / d for integers n and d."def numer(r):    "Return the numerator of rational number r."def denom(r):    "Return the denominator of rational number r."
+    def rational(n, d):
+    "Return a fraction n / d for integers n and d."
+    def numer(r):
+    "Return the numerator of rational number r."
+    def denom(r):
+    "Return the denominator of rational number r."
 
 Crucially, one can use a data abstraction without knowing how these functions are implemented. For example, we (humans) can verify that `mul_rationals` is implemented correctly just by knowing what `rational`, `numer`, and `denom` do without knowing how they are implemented.
 
-    def mul_rationals(r1, r2):    "Return the rational number r1 * r2."    return rational(numer(r1) * numer(r2), denom(r1) * denom(r2))
+    def mul_rationals(r1, r2):
+    "Return the rational number r1 * r2."
+    	return rational(numer(r1) * numer(r2), denom(r1) * denom(r2))
 
 However, for Python to run the program, the data abstraction requires an implementation. Using knowledge of the implementation crosses the abstraction barrier, which separates the part of a program that depends on the implementation of the data abstraction from the part that does not. A well-written program typically will minimize the amount of code that depends on the implementation so that the implementation can be changed later on without requiring much code to be rewritten.
 
@@ -99,7 +162,14 @@ We also have the following **selectors** in order to get the information for eac
 
 Here is how we would use the constructor and selectors to create cities and extract their information:
 
-    >>> berkeley = make_city('Berkeley', 122, 37)>>> get_name(berkeley)'Berkeley'>>> get_lat(berkeley)122>>> new_york = make_city('New York City', 74, 40)>>> get_lon(new_york)40
+    >>> berkeley = make_city('Berkeley', 122, 37)
+    >>> get_name(berkeley)
+    'Berkeley'
+    >>> get_lat(berkeley)
+    122
+    >>> new_york = make_city('New York City', 74, 40)
+    >>> get_lon(new_york)
+    40
 
 All of the selector and constructor functions can be found in the lab file if you are curious to see how they are implemented. However, the point of data abstraction is that, when writing a program about cities, we do not need to know the implementation.
 
@@ -107,11 +177,19 @@ All of the selector and constructor functions can be found in the lab file if yo
 
 We will now implement the function `distance`, which computes the distance between two city objects. Recall that the distance between two coordinate pairs `(x1, y1)` and `(x2, y2)` can be found by calculating the `sqrt` of `(x1 - x2)**2 + (y1 - y2)**2`. We have already imported `sqrt` for your convenience. Use the latitude and longitude of a city as its coordinates; you'll need to use the selectors to access this info!
 
-    from math import sqrtdef distance(city_a, city_b):    """    >>> city_a = make_city('city_a', 0, 1)    >>> city_b = make_city('city_b', 0, 2)    >>> distance(city_a, city_b)    1.0    >>> city_c = make_city('city_c', 6.5, 12)    >>> city_d = make_city('city_d', 2.5, 15)    >>> distance(city_c, city_d)    5.0    """    "*** YOUR CODE HERE ***"
+    from math import sqrtdef distance(city_a, city_b):
+    """    >>> city_a = make_city('city_a', 0, 1)
+    >>> city_b = make_city('city_b', 0, 2)
+    >>> distance(city_a, city_b)
+    1.0
+    >>> city_c = make_city('city_c', 6.5, 12)
+    >>> city_d = make_city('city_d', 2.5, 15)
+    >>> distance(city_c, city_d)    5.0    """
+    "*** YOUR CODE HERE ***"
 
 Use Ok to test your code:
 
-    python3 ok -q distance
+    python ok -q distance
 
 ### Q5: Closer City[​](https://www.learncs.site/docs/curriculum-resource/cs61a/lab/lab01#q5-closer-city "Direct link to Q5: Closer City")
 
@@ -125,7 +203,7 @@ You may only use the selectors and constructors introduced above and the `distan
 
 Use Ok to test your code:
 
-    python3 ok -q closer_city
+    python ok -q closer_city
 
 ### Q6: Don't violate the abstraction barrier![​](https://www.learncs.site/docs/curriculum-resource/cs61a/lab/lab01#q6-dont-violate-the-abstraction-barrier "Direct link to Q6: Don't violate the abstraction barrier!")
 
@@ -137,7 +215,7 @@ It's possible that you passed the doctests for the previous questions even if yo
 
 Use Ok to test your code:
 
-    python3 ok -q check_city_abstraction
+    python ok -q check_city_abstraction
 
 The `check_city_abstraction` function exists only for the doctest, which swaps out the implementations of the original abstraction with something else, runs the tests from the previous two parts, then restores the original abstraction.
 
@@ -152,7 +230,7 @@ Check Your Score Locally[​](https://www.learncs.site/docs/curriculum-resource/
 
 You can locally check your score on each question of this assignment by running
 
-    python3 ok --score
+    python ok --score
 
 **This does NOT submit the assignment!** When you are satisfied with your score, submit the assignment to Gradescope to receive credit for it.
 
