@@ -80,11 +80,13 @@ def planet(mass):
     """Construct a planet of some mass."""
     assert mass > 0
     "*** YOUR CODE HERE ***"
+    return ['planet', mass]
 
 def mass(p):
     """Select the mass of a planet."""
     assert is_planet(p), 'must call mass on a planet'
     "*** YOUR CODE HERE ***"
+    return p[1]
 
 def is_planet(p):
     """Whether p is a planet."""
@@ -137,6 +139,16 @@ def balanced(m):
     True
     """
     "*** YOUR CODE HERE ***"
+    if is_planet(m):
+        return True
+    else:
+        assert is_mobile(m), "must get total mass of a mobile or a planet"
+        if total_mass(end(left(m))) * length(left(m)) == total_mass(end(right(m))) * length(right(m)):
+            return balanced(end(left(m))) and balanced(end(right(m)))
+        else:
+            return False
+               
+
 
 
 HW_SOURCE_FILE=__file__
@@ -152,6 +164,9 @@ def max_path_sum(t):
     17
     """
     "*** YOUR CODE HERE ***"
+    if is_leaf(t):
+        return label(t)
+    return label(t) + max([max_path_sum(branch) for branch in branches(t)])
 
 
 

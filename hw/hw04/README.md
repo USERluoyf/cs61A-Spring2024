@@ -74,21 +74,82 @@ Below are the implementations of the various data abstractions used in mobiles. 
 
 _Implementation of the Mobile Data Abstraction_ (**for your reference, no need to do anything here**):
 
-    def mobile(left, right):    """Construct a mobile from a left arm and a right arm."""    assert is_arm(left), "left must be an arm"    assert is_arm(right), "right must be an arm"    return ['mobile', left, right]def is_mobile(m):    """Return whether m is a mobile."""    return type(m) == list and len(m) == 3 and m[0] == 'mobile'def left(m):    """Select the left arm of a mobile."""    assert is_mobile(m), "must call left on a mobile"    return m[1]def right(m):    """Select the right arm of a mobile."""    assert is_mobile(m), "must call right on a mobile"    return m[2]
+    def mobile(left, right):    
+    	"""Construct a mobile from a left arm and a right arm."""
+    	assert is_arm(left), "left must be an arm"
+        assert is_arm(right), "right must be an arm"
+        return ['mobile', left, right]
+    def is_mobile(m):
+    	"""Return whether m is a mobile."""
+        return type(m) == list and len(m) == 3 and m[0] == 'mobile'
+    def left(m): 
+    	"""Select the left arm of a mobile."""
+        assert is_mobile(m), "must call left on a mobile"
+        return m[1]
+    def right(m):    
+    	"""Select the right arm of a mobile."""
+        assert is_mobile(m), "must call right on a mobile"
+        return m[2]
 
 _Implementation of the Arm Data Abstraction_ (**for your reference, no need to do anything here**):
 
-    def arm(length, mobile_or_planet):    """Construct an arm: a length of rod with a mobile or planet at the end."""    assert is_mobile(mobile_or_planet) or is_planet(mobile_or_planet)    return ['arm', length, mobile_or_planet]def is_arm(s):    """Return whether s is an arm."""    return type(s) == list and len(s) == 3 and s[0] == 'arm'def length(s):    """Select the length of an arm."""    assert is_arm(s), "must call length on an arm"    return s[1]def end(s):    """Select the mobile or planet hanging at the end of an arm."""    assert is_arm(s), "must call end on an arm"    return s[2]
+    def arm(length, mobile_or_planet):
+    	"""Construct an arm: a length of rod with a mobile or planet at the end."""    
+    	assert is_mobile(mobile_or_planet) or is_planet(mobile_or_planet)
+        return ['arm', length, mobile_or_planet]
+    def is_arm(s):
+    	"""Return whether s is an arm."""
+        return type(s) == list and len(s) == 3 and s[0] == 'arm'
+    def length(s):
+    	"""Select the length of an arm."""
+        assert is_arm(s), "must call length on an arm"    
+        return s[1]
+    def end(s):    
+    	"""Select the mobile or planet hanging at the end of an arm."""
+        assert is_arm(s), "must call end on an arm"
+        return s[2]
 
 ### Q2: Mass[​](https://www.learncs.site/docs/curriculum-resource/cs61a/homework/hw04#q2-mass "Direct link to Q2: Mass")
 
 Implement the `planet` data abstraction by completing the `planet` constructor and the `mass` selector so that a planet is represented using a two-element list where the first element is the string `'planet'` and the second element is its mass.
 
-    def planet(mass):    """Construct a planet of some mass."""    assert mass > 0    "*** YOUR CODE HERE ***"def mass(p):    """Select the mass of a planet."""    assert is_planet(p), 'must call mass on a planet'    "*** YOUR CODE HERE ***"def is_planet(p):    """Whether p is a planet."""    return type(p) == list and len(p) == 2 and p[0] == 'planet'
+    def planet(mass):
+    	"""Construct a planet of some mass.""" 
+        assert mass > 0
+        "*** YOUR CODE HERE ***"
+    def mass(p):
+    	"""Select the mass of a planet."""  
+        assert is_planet(p), 'must call mass on a planet'
+        "*** YOUR CODE HERE ***"
+    def is_planet(p):
+    	"""Whether p is a planet.""" 
+        return type(p) == list and len(p) == 2 and p[0] == 'planet'
 
 The `total_mass` function demonstrates the use of the mobile, arm, and planet abstractions. You do **NOT** need to implement anything here. **You may use the `total_mass` function in the following questions.**
 
-    def examples():    t = mobile(arm(1, planet(2)),               arm(2, planet(1)))    u = mobile(arm(5, planet(1)),               arm(1, mobile(arm(2, planet(3)),                             arm(3, planet(2)))))    v = mobile(arm(4, t), arm(2, u))    return t, u, vdef total_mass(m):    """Return the total mass of m, a planet or mobile.    >>> t, u, v = examples()    >>> total_mass(t)    3    >>> total_mass(u)    6    >>> total_mass(v)    9    """    if is_planet(m):        return mass(m)    else:        assert is_mobile(m), "must get total mass of a mobile or a planet"        return total_mass(end(left(m))) + total_mass(end(right(m)))
+    def examples():    
+    	t = mobile(arm(1, planet(2)),
+        		   arm(2, planet(1)))
+        u = mobile(arm(5, planet(1)),
+        		   arm(1, mobile(arm(2, planet(3)),
+                   				 arm(3, planet(2)))))
+        v = mobile(arm(4, t), arm(2, u))
+        return t, u, v
+    def total_mass(m):
+    	"""Return the total mass of m, a planet or mobile.
+        >>> t, u, v = examples() 
+        >>> total_mass(t)  
+        3
+        >>> total_mass(u) 
+        6
+        >>> total_mass(v)
+        9 
+        """    
+        if is_planet(m): 
+        	return mass(m)
+        else:
+        	assert is_mobile(m), "must get total mass of a mobile or a planet"
+            return total_mass(end(left(m))) + total_mass(end(right(m)))
 
 Run the `ok` tests for `total_mass` to make sure that your `planet` and `mass` functions are implemented correctly.
 
@@ -107,7 +168,25 @@ Planets themselves are balanced, as there is nothing hanging off of them.
 
 > **Reminder:** You may use the `total_mass` function above. Don't violate abstraction barriers. Instead, use the selector functions that have been defined.
 
-    def balanced(m):    """Return whether m is balanced.    >>> t, u, v = examples()    >>> balanced(t)    True    >>> balanced(v)    True    >>> p = mobile(arm(3, t), arm(2, u))    >>> balanced(p)    False    >>> balanced(mobile(arm(1, v), arm(1, p)))    False    >>> balanced(mobile(arm(1, p), arm(1, v)))    False    >>> from construct_check import check    >>> # checking for abstraction barrier violations by banning indexing    >>> check(HW_SOURCE_FILE, 'balanced', ['Index'])    True    """    "*** YOUR CODE HERE ***"
+    def balanced(m):
+    	"""Return whether m is balanced.
+        >>> t, u, v = examples()
+        >>> balanced(t) 
+        True
+        >>> balanced(v)
+        True
+        >>> p = mobile(arm(3, t), arm(2, u))
+        >>> balanced(p)  
+        False
+        >>> balanced(mobile(arm(1, v), arm(1, p)))
+        False  
+        >>> balanced(mobile(arm(1, p), arm(1, v)))
+        False
+        >>> from construct_check import check
+        >>> # checking for abstraction barrier violations by banning indexing
+        >>> check(HW_SOURCE_FILE, 'balanced', ['Index'])
+        True
+        """    "*** YOUR CODE HERE ***"
 
 Use Ok to test your code:
 
@@ -120,7 +199,13 @@ Trees[​](https://www.learncs.site/docs/curriculum-resource/cs61a/homework/hw04
 
 Write a function that takes in a tree and returns the maximum sum of the values along any root-to-leaf path in the tree. A root-to-leaf path is a sequence of nodes starting at the root and proceeding to some leaf of the tree. You can assume the tree will have positive numbers for its labels.
 
-    def max_path_sum(t):    """Return the maximum root-to-leaf path sum of a tree.    >>> t = tree(1, [tree(5, [tree(1), tree(3)]), tree(10)])    >>> max_path_sum(t) # 1, 10    11    >>> t2 = tree(5, [tree(4, [tree(1), tree(3)]), tree(2, [tree(10), tree(3)])])    >>> max_path_sum(t2) # 5, 2, 10    17    """    "*** YOUR CODE HERE ***"
+    def max_path_sum(t):    
+    	"""Return the maximum root-to-leaf path sum of a tree.   
+    	>>> t = tree(1, [tree(5, [tree(1), tree(3)]), tree(10)])  
+    	>>> max_path_sum(t) # 1, 10    11  
+    	>>> t2 = tree(5, [tree(4, [tree(1), tree(3)]), tree(2, [tree(10), tree(3)])]) 
+    	>>> max_path_sum(t2) # 5, 2, 10    17    
+    	"""    "*** YOUR CODE HERE ***"
 
 Use Ok to test your code:
 
