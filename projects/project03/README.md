@@ -67,7 +67,7 @@ The primary purpose of `ok` is to test your implementations.
 
 If you want to test your code interactively, you can run
 
-     python3 ok -q [question number] -i 
+    python ok -q [question number] -i 
 
 with the appropriate question number (e.g. `01`) inserted. This will run the tests for that question until the first one you failed, then give you a chance to test the functions you wrote interactively.
 
@@ -136,7 +136,7 @@ In the first phase you will complete the implementation that will allow for basi
 
 Answer a set of conceptual questions after you have read the _entire_ `ants.py` file by running this `ok` command:
 
-    python3 ok -q 00 -u
+    python ok -q 00 -u
 
 If you get stuck while answering these questions, you can try reading through `ants.py` again or asking questions on Ed.
 
@@ -150,16 +150,15 @@ If you get stuck while answering these questions, you can try reading through `a
 |![alt text](image.png)HarvesterAnt | 2 |	 1 |
 |![alt text](image-1.png)  ThrowerAnt |  3  |	1 |
 
-
 **Part B**: Now that placing an `Ant` costs food, we need to be able to gather more food! To fix this issue, implement the `HarvesterAnt` class. A `HarvesterAnt` is a type of `Ant` that adds one food to the `gamestate.food` total as its `action`.
 
 Before writing any code, unlock the tests to verify your understanding of the question:
 
-    python3 ok -q 01 -u
+    python ok -q 01 -u
 
 Once you are done unlocking, begin implementing your solution. You can check your correctness with:
 
-    python3 ok -q 01
+    python ok -q 01
 
 ### Problem 2 (1 pt)[​](https://www.learncs.site/docs/curriculum-resource/cs61a/project/ants#problem-2-1-pt "Direct link to Problem 2 (1 pt)")
 
@@ -180,11 +179,11 @@ However, simply passing an entrance to a `Place` constructor will be problematic
 
 Before writing any code, unlock the tests to verify your understanding of the question:
 
-    python3 ok -q 02 -u
+    python ok -q 02 -u
 
 Once you are done unlocking, begin implementing your solution. You can check your correctness with:
 
-    python3 ok -q 02
+    python ok -q 02
 
 ### Problem 3 (2 pt)[​](https://www.learncs.site/docs/curriculum-resource/cs61a/project/ants#problem-3-2-pt "Direct link to Problem 3 (2 pt)")
 
@@ -206,11 +205,11 @@ Change `nearest_bee` so that it returns a random `Bee` from the nearest place th
 
 Before writing any code, unlock the tests to verify your understanding of the question:
 
-    python3 ok -q 03 -u
+    python ok -q 03 -u
 
 Once you are done unlocking, begin implementing your solution. You can check your correctness with:
 
-    python3 ok -q 03
+    python ok -q 03
 
 ### Playing the game[​](https://www.learncs.site/docs/curriculum-resource/cs61a/project/ants#playing-the-game "Direct link to Playing the game")
 
@@ -218,13 +217,22 @@ After implementing `nearest_bee`, a `ThrowerAnt` should be able to `throw_at` a 
 
 Now you're ready to try what you've built. To start a graphical game, run:
 
-    python3 gui.py
+    python gui.py
 
 After you start the graphical version, the game is (usually) available at [http://127.0.0.1:31415/](http://127.0.0.1:31415/).
 
-The game has several options that you will use throughout the project, which you can view with `python3 gui.py --help`.
+The game has several options that you will use throughout the project, which you can view with `python gui.py --help`.
 
-    usage: gui.py [-h] [-d DIFFICULTY] [-w] [--food FOOD]Play Ants vs. SomeBeesoptional arguments:  -h, --help     show this help message and exit  -d DIFFICULTY  sets difficulty of game (test/easy/normal/hard/extra-hard)  -w, --water    loads a full layout with water  --food FOOD    number of food to start with when testing
+    usage: gui.py [-h] [-d DIFFICULTY] [-w] [--food FOOD]
+    Play Ants vs. SomeBeesoptional arguments:
+    -h, --help     
+    show this help message and exit 
+    -d DIFFICULTY 
+    sets difficulty of game (test/easy/normal/hard/extra-hard) 
+    -w, --water    
+    loads a full layout with water 
+    --food FOOD   
+    number of food to start with when testing
 
 You can refresh the webpage to restart the game, but if you changed your code, you need to terminate `gui.py` and run it again. To terminate `gui.py`, you can hit `Ctrl + C` on the terminal.
 
@@ -234,7 +242,7 @@ You cannot have multiple tabs of this same Ants GUI open simultaneously or they 
 
 Check to make sure that you completed all the problems in Phase 1:
 
-    python3 ok --score
+    python ok --score
 
 Then, submit `ants.py` to the **Ants Checkpoint 1** assignment on **Gradescope** before the checkpoint deadline.
 
@@ -251,7 +259,7 @@ Now that you've implemented basic gameplay with two types of `Ant`s, let's add s
 
 **After you implement each `Ant` subclass in these sections, you'll need to set its `implemented` class attribute to `True`** so that that type of ant will show up in the GUI. Feel free to try out the game with each new ant to test the functionality!
 
-With all following ants from now on, try `python3 gui.py` to play against a full swarm of bees in a multi-tunnel layout and try `-d hard` or `-d extra-hard` if you want a real challenge! If the bees are too numerous to vanquish, you might need to create some new ants.
+With all following ants from now on, try `python gui.py` to play against a full swarm of bees in a multi-tunnel layout and try `-d hard` or `-d extra-hard` if you want a real challenge! If the bees are too numerous to vanquish, you might need to create some new ants.
 
 ### Problem 4 (2 pt)[​](https://www.learncs.site/docs/curriculum-resource/cs61a/project/ants#problem-4-2-pt "Direct link to Problem 4 (2 pt)")
 
@@ -284,13 +292,13 @@ Don't forget to set the `implemented` class attribute of `LongThrower` and `Shor
 
 Before writing any code, unlock the tests to verify your understanding of the question:
 
-    python3 ok -q 04 -u
+    python ok -q 04 -u
 
 After writing code, test your implementation (rerun the tests for 03 to make sure they still work):
 
-    python3 ok -q 03
-
-    python3 ok -q 04
+    python ok -q 03
+    
+    python ok -q 04
 
 👩🏽‍💻👨🏿‍💻 [Pair programming?](https://cs61a.org/articles/pair-programming) Remember to alternate between driver and navigator roles. The driver controls the keyboard; the navigator watches, asks questions, and suggests ideas.
 
@@ -315,7 +323,13 @@ However, your method needs to also include the reflective damage logic:
 
 > _Hint:_ Damaging a bee may cause it to be removed from its place. If you iterate over a list, but change the contents of that list at the same time, you [may not visit all the elements](https://docs.python.org/3/tutorial/controlflow.html#for-statements). This can be prevented by making a copy of the list. You can either use a list slice, or use the built-in `list` function to make sure we do not affect the original list.
 
-    >>> s = [1,2,3,4]>>> s[:][1, 2, 3, 4]>>> list(s)[1, 2, 3, 4]>>> (s[:] is not s) and (list(s) is not s)True
+    >>> s = [1,2,3,4]
+    >>> s[:]
+    [1, 2, 3, 4]
+    >>> list(s)
+    [1, 2, 3, 4]
+    >>> (s[:] is not s) and (list(s) is not s)
+    True
 
 Once you've finished implementing the `FireAnt`, give it a class attribute `implemented` with the value `True`.
 
@@ -323,15 +337,15 @@ Once you've finished implementing the `FireAnt`, give it a class attribute `impl
 
 Before writing any code, unlock the tests to verify your understanding of the question:
 
-    python3 ok -q 05 -u
+    python ok -q 05 -u
 
 Once you are done unlocking, begin implementing your solution. You can check your correctness with:
 
-    python3 ok -q 05
+    python ok -q 05
 
 You can also test your program by playing a game or two! A `FireAnt` should destroy all co-located `Bee`s when it is stung. To start a game with ten food (for easy testing):
 
-    python3 gui.py --food 10
+    python gui.py --food 10
 
 ### Problem 6 (1 pt)[​](https://www.learncs.site/docs/curriculum-resource/cs61a/project/ants#problem-6-1-pt "Direct link to Problem 6 (1 pt)")
 
@@ -347,11 +361,11 @@ Unlike with previous ants, we have not provided you with a class statement. Impl
 
 Before writing any code, unlock the tests to verify your understanding of the question:
 
-    python3 ok -q 06 -u
+    python ok -q 06 -u
 
 Once you are done unlocking, begin implementing your solution. You can check your correctness with:
 
-    python3 ok -q 06
+    python ok -q 06
 
 ### Problem 7 (3 pt)[​](https://www.learncs.site/docs/curriculum-resource/cs61a/project/ants#problem-7-3-pt "Direct link to Problem 7 (3 pt)")
 
@@ -373,11 +387,11 @@ Implement the `action` method of the `HungryAnt`: First, check if it is chewing;
 
 Before writing any code, unlock the tests to verify your understanding of the question:
 
-    python3 ok -q 07 -u
+    python ok -q 07 -u
 
 Once you are done unlocking, begin implementing your solution. You can check your correctness with:
 
-    python3 ok -q 07
+    python ok -q 07
 
 👩🏽‍💻👨🏿‍💻 [Pair programming?](https://cs61a.org/articles/pair-programming) This would be a good time to switch roles. Switching roles makes sure that you both benefit from the learning experience of being in each role.
 
@@ -410,11 +424,11 @@ There is already an `Ant.can_contain` method, but it always returns `False`. Ove
 
 Before writing any code, unlock the tests to verify your understanding of the question:
 
-    python3 ok -q 08a -u
+    python ok -q 08a -u
 
 Once you are done unlocking, begin implementing your solution. You can check your correctness with:
 
-    python3 ok -q 08a
+    python ok -q 08a
 
 #### Problem 8b[​](https://www.learncs.site/docs/curriculum-resource/cs61a/project/ants#problem-8b "Direct link to Problem 8b")
 
@@ -431,11 +445,11 @@ Modify `Ant.add_to` to allow a container and a non-container ant to occupy the s
 
 Before writing any code, unlock the tests to verify your understanding of the question:
 
-    python3 ok -q 08b -u
+    python ok -q 08b -u
 
 Once you are done unlocking, begin implementing your solution. You can check your correctness with:
 
-    python3 ok -q 08b
+    python ok -q 08b
 
 #### Problem 8c[​](https://www.learncs.site/docs/curriculum-resource/cs61a/project/ants#problem-8c "Direct link to Problem 8c")
 
@@ -445,11 +459,11 @@ Once you've finished implementing the `BodyguardAnt`, give it a class attribute 
 
 Before writing any code, unlock the tests to verify your understanding of the question:
 
-    python3 ok -q 08c -u
+    python ok -q 08c -u
 
 Once you are done unlocking, begin implementing your solution. You can check your correctness with:
 
-    python3 ok -q 08c
+    python ok -q 08c
 
 ### Problem 9 (2 pt)[​](https://www.learncs.site/docs/curriculum-resource/cs61a/project/ants#problem-9-2-pt "Direct link to Problem 9 (2 pt)")
 
@@ -469,17 +483,17 @@ You should not need to modify any code outside of the `TankAnt` class. If you fi
 
 Before writing any code, unlock the tests to verify your understanding of the question:
 
-    python3 ok -q 09 -u
+    python ok -q 09 -u
 
 Once you are done unlocking, begin implementing your solution. You can check your correctness with:
 
-    python3 ok -q 09
+    python ok -q 09
 
 **Submit your Phase 2 checkpoint**
 
 Check to make sure that you completed all the problems in Phase 2:
 
-    python3 ok --score
+    python ok --score
 
 Then, submit `ants.py` to the **Ants Checkpoint 2** assignment on **Gradescope** before the checkpoint deadline.
 
@@ -502,15 +516,15 @@ Now, implement the `add_insect` method for `Water`. First, add the insect to the
 
 Before writing any code, unlock the tests to verify your understanding of the question:
 
-    python3 ok -q 10 -u
+    python ok -q 10 -u
 
 Once you are done unlocking, begin implementing your solution. You can check your correctness with:
 
-    python3 ok -q 10
+    python ok -q 10
 
 Once you've finished this problem, play a game that includes water. To access the `wet_layout`, which includes water, add the `--water` option (or `-w` for short) when you start the game.
 
-    python3 gui.py --water
+    python gui.py --water
 
 👩🏽‍💻👨🏿‍💻 [Pair programming?](https://cs61a.org/articles/pair-programming) Remember to alternate between driver and navigator roles. The driver controls the keyboard; the navigator watches, asks questions, and suggests ideas.
 
@@ -526,11 +540,11 @@ We have not provided you with a class header. Implement the `ScubaThrower` class
 
 Before writing any code, unlock the tests to verify your understanding of the question:
 
-    python3 ok -q 11 -u
+    python ok -q 11 -u
 
 Once you are done unlocking, begin implementing your solution. You can check your correctness with:
 
-    python3 ok -q 11
+    python ok -q 11
 
 ### Problem 12 (2 pt)[​](https://www.learncs.site/docs/curriculum-resource/cs61a/project/ants#problem-12-2-pt "Direct link to Problem 12 (2 pt)")
 
@@ -554,11 +568,11 @@ However, with great power comes great responsibility. If a queen ever has its he
 
 Before writing any code, unlock the tests to verify your understanding of the question:
 
-    python3 ok -q 12 -u
+    python ok -q 12 -u
 
 Once you are done unlocking, begin implementing your solution. You can check your correctness with:
 
-    python3 ok -q 12
+    python ok -q 12
 
 Optional Problems[​](https://www.learncs.site/docs/curriculum-resource/cs61a/project/ants#optional-problems "Direct link to Optional Problems")
 -----------------------------------------------------------------------------------------------------------------------------------------------
@@ -583,11 +597,11 @@ Finally, we want to make the `NinjaAnt` damage all `Bee`s that fly past. Impleme
 
 Before writing any code, unlock the tests to verify your understanding of the question:
 
-    python3 ok -q optional1 -u
+    python ok -q optional1 -u
 
 Once you are done unlocking, begin implementing your solution. You can check your correctness with:
 
-    python3 ok -q optional1
+    python ok -q optional1
 
 For a challenge, try to win a game using only `HarvesterAnt` and `NinjaAnt`.
 
@@ -620,7 +634,7 @@ In addition to implementing the methods above, you may need to modify, add, or u
 
 You can run the provided test, but it is not exhaustive:
 
-    python3 ok -q optional2
+    python ok -q optional2
 
 Make sure to test your code!
 
@@ -629,11 +643,11 @@ Project submission[​](https://www.learncs.site/docs/curriculum-resource/cs61a/
 
 Run `ok` on all problems to make sure all tests are unlocked and pass:
 
-    python3 ok
+    python ok
 
 You can also check your score on each part of the project:
 
-    python3 ok --score
+    python ok --score
 
 Once you are satisfied, submit this assignment by uploading `ants.py` to the **Ants** assignment on **Gradescope.** For a refresher on how to do this, refer to [Lab 00](https://cs61a.org/lab/lab00/#task-c-submitting-the-assignment).
 
@@ -641,7 +655,7 @@ You can add a partner to your Gradescope submission by clicking on **+ Add Group
 
 **You are now done with the project!** If you haven't yet, you should try playing the game!
 
-    python3 gui.py [-h] [-d DIFFICULTY] [-w] [--food FOOD]
+    python gui.py [-h] [-d DIFFICULTY] [-w] [--food FOOD]
 
 **Acknowledgments:** Tom Magrino and Eric Tzeng developed this project with John DeNero. Jessica Wan contributed the original artwork. Joy Jeng and Mark Miyashita invented the queen ant. Many others have contributed to the project as well!
 

@@ -50,21 +50,41 @@ Try to write this generator function recursively. If you're stuck, you can first
 
 > **Hint:** Since `hailstone` returns a generator, you can `yield from` a call to `hailstone`!
 
-    def hailstone(n):    """Q1: Yields the elements of the hailstone sequence starting at n.       At the end of the sequence, yield 1 infinitely.    >>> hail_gen = hailstone(10)    >>> [next(hail_gen) for _ in range(10)]    [10, 5, 16, 8, 4, 2, 1, 1, 1, 1]    >>> next(hail_gen)    1    """    "*** YOUR CODE HERE ***"
+    def hailstone(n):    
+    """Q1: Yields the elements of the hailstone sequence starting at n.
+    At the end of the sequence, yield 1 infinitely.    
+    >>> hail_gen = hailstone(10)    
+    >>> [next(hail_gen) for _ in range(10)] 
+    [10, 5, 16, 8, 4, 2, 1, 1, 1, 1]   
+    >>> next(hail_gen) 
+    1    """ 
+    "*** YOUR CODE HERE ***"
 
 Use Ok to test your code:
 
-    python3 ok -q hailstone
+    python ok -q hailstone
 
 ### Q2: Merge[​](https://www.learncs.site/docs/curriculum-resource/cs61a/homework/hw05#q2-merge "Direct link to Q2: Merge")
 
 Write a generator function `merge` that takes in two infinite generators `a` and `b` that are in increasing order without duplicates and returns a generator that has all the elements of both generators, in increasing order, without duplicates.
 
-    def merge(a, b):    """Q2:    >>> def sequence(start, step):    ...     while True:    ...         yield start    ...         start += step    >>> a = sequence(2, 3) # 2, 5, 8, 11, 14, ...    >>> b = sequence(3, 2) # 3, 5, 7, 9, 11, 13, 15, ...    >>> result = merge(a, b) # 2, 3, 5, 7, 8, 9, 11, 13, 14, 15    >>> [next(result) for _ in range(10)]    [2, 3, 5, 7, 8, 9, 11, 13, 14, 15]    """    "*** YOUR CODE HERE ***"
+    def merge(a, b):  
+    """Q2:    
+    >>> def sequence(start, step):  
+    ...     while True:   
+    ...         yield start  
+    ...         start += step    
+    >>> a = sequence(2, 3) # 2, 5, 8, 11, 14, ...  
+    >>> b = sequence(3, 2) # 3, 5, 7, 9, 11, 13, 15, ...  
+    >>> result = merge(a, b) # 2, 3, 5, 7, 8, 9, 11, 13, 14, 15 
+    >>> [next(result) for _ in range(10)]  
+    [2, 3, 5, 7, 8, 9, 11, 13, 14, 15]   
+    """  
+    "*** YOUR CODE HERE ***"
 
 Use Ok to test your code:
 
-    python3 ok -q merge
+    python ok -q merge
 
 ### Q3: Yield Paths[​](https://www.learncs.site/docs/curriculum-resource/cs61a/homework/hw05#q3-yield-paths "Direct link to Q3: Yield Paths")
 
@@ -72,7 +92,42 @@ Define a generator function `yield_paths` which takes in a tree `t`, a value `va
 
 Each path should be represented as a list of the labels along that path in the tree. You may yield the paths in any order.
 
-    def yield_paths(t, value):    """Q4: Yields all possible paths from the root of t to a node with the label    value as a list.    >>> t1 = tree(1, [tree(2, [tree(3), tree(4, [tree(6)]), tree(5)]), tree(5)])    >>> print_tree(t1)    1      2        3        4          6        5      5    >>> next(yield_paths(t1, 6))    [1, 2, 4, 6]    >>> path_to_5 = yield_paths(t1, 5)    >>> sorted(list(path_to_5))    [[1, 2, 5], [1, 5]]    >>> t2 = tree(0, [tree(2, [t1])])    >>> print_tree(t2)    0      2        1          2            3            4              6            5          5    >>> path_to_2 = yield_paths(t2, 2)    >>> sorted(list(path_to_2))    [[0, 2], [0, 2, 1, 2]]    """    if label(t) == value:        yield ____    for b in branches(t):        for ____ in ____:            yield ____
+    def yield_paths(t, value):  
+    """Q4: Yields all possible paths from the root of t to a node with the label    
+    value as a list. 
+    >>> t1 = tree(1, [tree(2, [tree(3), tree(4, [tree(6)]), tree(5)]), tree(5)]) 
+    >>> print_tree(t1)  
+    1  
+      2
+        3
+        4
+          6
+        5
+      5
+    >>> next(yield_paths(t1, 6)) 
+    [1, 2, 4, 6] 
+    >>> path_to_5 = yield_paths(t1, 5)  
+    >>> sorted(list(path_to_5))
+    [[1, 2, 5], [1, 5]]
+    >>> t2 = tree(0, [tree(2, [t1])]) 
+    >>> print_tree(t2) 
+    0 
+      2
+        1
+          2
+            3
+            4
+              6
+            5
+          5
+    >>> path_to_2 = yield_paths(t2, 2)
+    >>> sorted(list(path_to_2))  
+    [[0, 2], [0, 2, 1, 2]]    """ 
+    if label(t) == value:  
+    	yield ____   
+        for b in branches(t):  
+        	for ____ in ____:   
+            	yield ____
 
 > _Hint:_ If you're having trouble getting started, think about how you'd approach this problem if it wasn't a generator function. What would your recursive calls be? With a generator function, what happens if you make a "recursive call" within its body?
 
@@ -84,14 +139,14 @@ Each path should be represented as a list of the labels along that path in the t
 
 Use Ok to test your code:
 
-    python3 ok -q yield_paths
+    python ok -q yield_paths
 
 Check Your Score Locally[​](https://www.learncs.site/docs/curriculum-resource/cs61a/homework/hw05#check-your-score-locally "Direct link to Check Your Score Locally")
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 You can locally check your score on each question of this assignment by running
 
-    python3 ok --score
+    python ok --score
 
 **This does NOT submit the assignment!** When you are satisfied with your score, submit the assignment to Gradescope to receive credit for it.
 

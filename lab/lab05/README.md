@@ -34,9 +34,11 @@ The two most common mutation operations for lists are item assignment and the `a
     >>> s = [1, 3, 4]
     >>> t = s  # A second name for the same list
     >>> t[0] = 2  # this changes the first element of the list to 2, affecting both s and t
-    >>> s[2, 3, 4]
+    >>> s
+    [2, 3, 4]
     >>> s.append(5)  # this adds 5 to the end of the list, affecting both s and t
-    >>> t[2, 3, 4, 5]
+    >>> t
+    [2, 3, 4, 5]
 
 There are many other list mutation methods:
 
@@ -65,7 +67,7 @@ Dictionaries also have item assignment (often used) and `pop` (rarely used).
 
 > Use Ok to test your knowledge with the following "What Would Python Display?" questions:
 > 
->     python3 ok -q list-mutation -u
+>    python ok -q list-mutation -u
 
     >>> s = [6, 7, 8]
     >>> print(s.append(6))
@@ -135,7 +137,7 @@ Write a function which takes in a list `s`, a value `before`, and a value `after
 
 Use Ok to test your code:
 
-    python3 ok -q insert_items
+    python ok -q insert_items
 
 ### Q3: Group By[​](https://www.learncs.site/docs/curriculum-resource/cs61a/lab/lab01#q3-group-by "Direct link to Q3: Group By")
 
@@ -163,7 +165,7 @@ The values of the dictionary are lists of elements from `s`. Each element `e` in
 ```
 Use Ok to test your code:
 
-    python3 ok -q group_by
+    python ok -q group_by
 
 Iterators[​](https://www.learncs.site/docs/curriculum-resource/cs61a/lab/lab01#iterators "Direct link to Iterators")
 --------------------------------------------------------------------------------------------------------------------
@@ -178,15 +180,51 @@ In general, an **iterable** is an object on which calling the built-in `iter` fu
 
 For example, a list is an iterable value.
 
-     >>>s = [1, 2, 3, 4]>>>next(s)       # s is iterable, but not an iteratorTypeError: 'list' object is not an iterator>>> t = iter(s)   # Creates an iterator>>> t<list_iterator object ...>>>> next(t)       # Calling next on an iterator1>>> next(t)       # Calling next on the same iterator2>>> next(iter(t)) # Calling iter on an iterator returns itself3>>> t2 = iter(s)>>> next(t2)      # Second iterator starts at the beginning of s1>>> next(t)       # First iterator is unaffected by second iterator4>>> next(t)       # No elements left!StopIteration>>> s             # Original iterable is unaffected[1, 2, 3, 4]
+     >>>s = [1, 2, 3, 4]
+     >>>next(s)       # s is iterable, but not an iterator
+     TypeError: 'list' object is not an iterator
+     >>> t = iter(s)   # Creates an iterator
+     >>> t
+     <list_iterator object ...>
+     >>> next(t)       # Calling next on an iterator
+     1
+     >>> next(t)       # Calling next on the same iterator
+     2
+     >>> next(iter(t)) # Calling iter on an iterator returns itself
+     3
+     >>> t2 = iter(s)
+     >>> next(t2)      # Second iterator starts at the beginning of s
+     1>>> next(t)       # First iterator is unaffected by second iterator
+     4
+     >>> next(t)       # No elements left!StopIteration
+     >>> s             # Original iterable is unaffected[1, 2, 3, 4]
 
 You can also use an iterator in a `for` statement because all iterators are iterable. But note that since iterators keep their state, they're only good to iterate through an iterable once:
 
-    >>> t = iter([4, 3, 2, 1])>>> for e in t:...     print(e)4321>>> for e in t:...     print(e)
+    >>> t = iter([4, 3, 2, 1])
+    >>> for e in t:
+    ...     print(e)
+    4321
+    >>> for e in t:
+    ...     print(e)
 
 There are built-in functions that return iterators.
 
-    >>> m = map(lambda x: x * x, [3, 4, 5])>>> next(m)9>>> next(m)16>>> f = filter(lambda x: x > 3, [3, 4, 5])>>> next(f)4>>> next(f)5>>> z = zip([30, 40, 50], [3, 4, 5])>>> next(z)(30, 3)>>> next(z)(40, 4)
+    >>> m = map(lambda x: x * x, [3, 4, 5])
+    >>> next(m)
+    9
+    >>> next(m)
+    16
+    >>> f = filter(lambda x: x > 3, [3, 4, 5])
+    >>> next(f)
+    4
+    >>> next(f)
+    5
+    >>> z = zip([30, 40, 50], [3, 4, 5])
+    >>> next(z)
+    (30, 3)
+    >>> next(z)
+    (40, 4)
 
 ### Q4: WWPD: Iterators[​](https://www.learncs.site/docs/curriculum-resource/cs61a/lab/lab01#q4-wwpd-iterators "Direct link to Q4: WWPD: Iterators")
 
@@ -194,15 +232,52 @@ There are built-in functions that return iterators.
 
 > Use Ok to test your knowledge with the following "What Would Python Display?" questions:
 > 
->     python3 ok -q iterators-wwpd -u
+>    python ok -q iterators-wwpd -u
 > 
 > Python's built-in `map`, `filter`, and `zip` functions return **iterators**, not lists.
 
-    >>> s = [1, 2, 3, 4]>>> t = iter(s)>>> next(s)______Error>>> next(t)______1>>> next(t)______2>>> next(iter(s))______1>>> next(iter(s))______1>>> u = t>>> next(u)______3>>> next(t)______4
-
-    >>> r = range(6)>>> r_iter = iter(r)>>> next(r_iter)______0>>> [x + 1 for x in r]______[1, 2, 3, 4, 5, 6]>>> [x + 1 for x in r_iter]______[2, 3, 4, 5, 6]>>> next(r_iter)______StopIteration
-
-    >>> map_iter = map(lambda x : x + 10, range(5))>>> next(map_iter)______10>>> next(map_iter)______11>>> list(map_iter)______[12, 13, 14]>>> for e in filter(lambda x : x % 4 == 0, range(1000, 1008)):...     print(e)______10001004>>> [x + y for x, y in zip([1, 2, 3], [4, 5, 6])]______[5, 7, 9]
+    >>> s = [1, 2, 3, 4]
+    >>> t = iter(s)
+    >>> next(s)______
+    Error
+    >>> next(t)______
+    1
+    >>> next(t)______
+    2
+    >>> next(iter(s))______
+    1
+    >>> next(iter(s))______
+    1
+    >>> u = t
+    >>> next(u)______
+    3
+    >>> next(t)______
+    4
+    
+    >>> r = range(6)
+    >>> r_iter = iter(r)
+    >>> next(r_iter)______
+    0
+    >>> [x + 1 for x in r]______
+    [1, 2, 3, 4, 5, 6]
+    >>> [x + 1 for x in r_iter]______
+    [2, 3, 4, 5, 6]
+    >>> next(r_iter)______
+    StopIteration
+    
+    >>> map_iter = map(lambda x : x + 10, range(5))
+    >>> next(map_iter)______
+    10
+    >>> next(map_iter)______
+    11
+    >>> list(map_iter)______
+    [12, 13, 14]
+    >>> for e in filter(lambda x : x % 4 == 0, range(1000, 1008)):
+    ...     print(e)______
+    1000
+    1004
+    >>> [x + y for x, y in zip([1, 2, 3], [4, 5, 6])]
+    ______[5, 7, 9]
 
 ### Q5: Count Occurrences[​](https://www.learncs.site/docs/curriculum-resource/cs61a/lab/lab01#q5-count-occurrences "Direct link to Q5: Count Occurrences")
 
@@ -233,7 +308,7 @@ Implement `count_occurrences`, which takes an iterator `t`, an integer `n`, and 
 
 Use Ok to test your code:
 
-    python3 ok -q count_occurrences
+    python ok -q count_occurrences
 
 ### Q6: Repeated[​](https://www.learncs.site/docs/curriculum-resource/cs61a/lab/lab01#q6-repeated "Direct link to Q6: Repeated")
 
@@ -243,18 +318,35 @@ Implement `repeated`, which takes in an iterator `t` and an integer `k` greater 
 > 
 > **Hint**: If you are receiving a `StopIteration` exception, your `repeated` function is calling `next` too many times.
 
-    def repeated(t, k):    """Return the first value in iterator t that appears k times in a row,    calling next on t as few times as possible.    >>> s = iter([10, 9, 10, 9, 9, 10, 8, 8, 8, 7])    >>> repeated(s, 2)    9    >>> t = iter([10, 9, 10, 9, 9, 10, 8, 8, 8, 7])    >>> repeated(t, 3)    8    >>> u = iter([3, 2, 2, 2, 1, 2, 1, 4, 4, 5, 5, 5])    >>> repeated(u, 3)    2    >>> repeated(u, 3)    5    >>> v = iter([4, 1, 6, 6, 7, 7, 8, 8, 2, 2, 2, 5])    >>> repeated(v, 3)    2    """    assert k > 1    "*** YOUR CODE HERE ***"
+    def repeated(t, k):    
+    """Return the first value in iterator t that appears k times in a row,    calling next on t as few times as possible.    
+    >>> s = iter([10, 9, 10, 9, 9, 10, 8, 8, 8, 7])    
+    >>> repeated(s, 2)    
+    9   
+    >>> t = iter([10, 9, 10, 9, 9, 10, 8, 8, 8, 7])   
+    >>> repeated(t, 3)    
+    8    
+    >>> u = iter([3, 2, 2, 2, 1, 2, 1, 4, 4, 5, 5, 5])    
+    >>> repeated(u, 3)    
+    2    
+    >>> repeated(u, 3)    
+    5    
+    >>> v = iter([4, 1, 6, 6, 7, 7, 8, 8, 2, 2, 2, 5])    
+    >>> repeated(v, 3)    
+    2    """    
+    assert k > 1    
+    "*** YOUR CODE HERE ***"
 
 Use Ok to test your code:
 
-    python3 ok -q repeated
+    python ok -q repeated
 
 Check Your Score Locally[​](https://www.learncs.site/docs/curriculum-resource/cs61a/lab/lab01#check-your-score-locally "Direct link to Check Your Score Locally")
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 You can locally check your score on each question of this assignment by running
 
-    python3 ok --score
+    python ok --score
 
 **This does NOT submit the assignment!** When you are satisfied with your score, submit the assignment to Gradescope to receive credit for it.
 
@@ -321,7 +413,7 @@ def sprout_leaves(t, leaves):
 
 Use Ok to test your code:
 
-    python3 ok -q sprout_leaves
+    python ok -q sprout_leaves
 
 ### Q8: Partial Reverse[​](https://www.learncs.site/docs/curriculum-resource/cs61a/lab/lab01#q8-partial-reverse "Direct link to Q8: Partial Reverse")
 
@@ -331,8 +423,16 @@ Implement the function `partial_reverse` which reverses a list starting from `st
 
 > **Hint:** You can swap elements at index `i` and `j` in list `s` with multiple assignment: `s[i], s[j] = s[j], s[i]`
 
-    def partial_reverse(s, start):    """Reverse part of a list in-place, starting with start up to the end of    the list.    >>> a = [1, 2, 3, 4, 5, 6, 7]    >>> partial_reverse(a, 2)    >>> a    [1, 2, 7, 6, 5, 4, 3]    >>> partial_reverse(a, 5)    >>> a    [1, 2, 7, 6, 5, 3, 4]    """    "*** YOUR CODE HERE ***"
+    def partial_reverse(s, start):   
+    """Reverse part of a list in-place, starting with start up to the end of    the list.    >>> a = [1, 2, 3, 4, 5, 6, 7]   
+    >>> partial_reverse(a, 2)  
+    >>> a   
+    [1, 2, 7, 6, 5, 4, 3]  
+    >>> partial_reverse(a, 5)  
+    >>> a   
+    [1, 2, 7, 6, 5, 3, 4]    """   
+    "*** YOUR CODE HERE ***"
 
 Use Ok to test your code:
 
-    python3 ok -q partial_reverse
+    python ok -q partial_reverse
